@@ -1,0 +1,22 @@
+{
+  "name": "fox-js",
+  "version": "0.0.1",
+  "description": "a filesystem package for huli developers",
+  "main": "fox.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/green-fox-academy/huli-filesystem-nodejs.git"
+  },
+  "author": "fehersanyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/green-fox-academy/huli-filesystem-nodejs/issues"
+  },
+  "homepage": "https://github.com/green-fox-academy/huli-filesystem-nodejs#readme",
+  "devDependencies": {
+    "cucumber": "^4.2.1"
+  }
+}
