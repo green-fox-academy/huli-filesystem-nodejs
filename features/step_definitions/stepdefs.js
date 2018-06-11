@@ -6,11 +6,17 @@ const fox = require('../../fox');
 Given('a file, in the local filesystem, at path: {string}', function (string) {});
 When('i read the file', function () {});
 Then('it contains', function (docString) {
-  assert.equal(docString, fox.readLocal('.gitignore'))
+  assert.equal(docString, fox.readLocal('.gitignore'));
 });
 
 Given('a directory, in the local filesystem, at path: {string}', function (string) {});
 When('the appropriate function is called', function () {});
 Then('it returns a true', function () {
-  assert.equal(true, fox.checkDirectory('features/'))
+  assert.equal(true, fox.checkDirectory('features/'));
+});
+
+Given('a file, in the local filesystem', function () {});
+When('created at path: {string}', function (string) {});
+Then('it contains: {string}', function (string) {
+  assert.equal(string, fox.createLocalFile('./testfile.txt'));
 });

@@ -14,3 +14,10 @@ Feature: BDD filesystem package wrking as expected
     Given a directory, in the local filesystem, at path: "dirname/"
     When the appropriate function is called
     Then it returns a true
+
+  Scenario:
+    Given a file, in the local filesystem
+    When created at path: "dirname/apple.txt"
+    Then it contains: 'hello world'      
+
+

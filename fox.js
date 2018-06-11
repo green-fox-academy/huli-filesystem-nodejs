@@ -20,5 +20,11 @@ module.exports = {
     }
   },
 
+  createLocalFile(file_name) {
+    let tempData = 'hello world'
+    fs.writeFileSync(file_name, tempData);
+    return tempData;
+  },
+
 }
 
