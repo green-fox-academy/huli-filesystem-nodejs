@@ -88,8 +88,31 @@ module.exports = {
       return e;
     }
   },
-  copyLocalFile(file_name) {},
-  copyLocalDirectory(directory_name) {},
-  getLocalItemStats() {}
-}
 
+  copyLocalFile(file_name, new_path_full) {
+    try {
+      fs.createReadStream(file_name).pipe(fs.createWriteStream(new_path_full));
+      return `${file_name} copyed to ${new_path_full}`;
+    } catch(e) {
+      return e;
+    }
+  },
+
+  copyLocalDirectory(directory_name, new_path_full) {
+    try {
+      fs.copy(directory_name, new_path_full);
+      return `${directory_name} has been copyed to ${new_path_full}`;
+    } catch(e) {
+      return e;
+    }
+  },
+  
+  getLocalItemStats(file_name) {
+    try {
+      return fs.stat(file_name);
+    } catch(e) {
+      return e;
+    }
+  },
+
+}
