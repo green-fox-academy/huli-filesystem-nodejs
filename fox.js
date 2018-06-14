@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 
 module.exports = {
 
@@ -80,7 +80,14 @@ module.exports = {
     }
   },
 
-  moveLocalDirectory(directory_name) {},
+  moveLocalDirectory(directory_name, new_path_full) {
+    try {
+      fs.moveSync(directory_name, new_path_full);
+      return `${directory_name} moved to ./${new_path_full}`
+    } catch(e) {
+      return e;
+    }
+  },
   copyLocalFile(file_name) {},
   copyLocalDirectory(directory_name) {},
   getLocalItemStats() {}

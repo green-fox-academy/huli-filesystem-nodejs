@@ -100,3 +100,18 @@ When('moveLocalFIle is called', function () {
 Then('it moves to {string}', function (string) {
   assert.equal(string, movedFile);
 });
+
+let movingDirectory;
+Given('I have a directory i want to move called {string}', function (string) {
+  movingDirectory = string;
+  return movingDirectory;
+});
+let itMoved;
+When('i cann moveLocalDirectory', function () {
+  itMoved = fox.moveLocalDirectory(movingDirectory, 'features/jibjab');
+  return itMoved;
+});
+
+Then('it moves the directory to {string}', function (string) {
+  assert.equal(string, itMoved);
+});

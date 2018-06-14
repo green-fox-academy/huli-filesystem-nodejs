@@ -51,3 +51,8 @@ Feature: BDD filesystem package wrking as expected
     Given I want to move a local file 'manual.js'
     When moveLocalFIle is called
     Then it moves to 'manual.js moved to features/manual.js'
+
+  Scenario:
+    Given I have a directory i want to move called 'jibjab'
+    When i cann moveLocalDirectory
+    Then it moves the directory to 'jibjab moved to ./features/jibjab'
