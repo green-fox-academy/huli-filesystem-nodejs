@@ -6,31 +6,31 @@ const fox = require('../../fox');
 Given('a file, in the local filesystem, at path: {string}', function (string) {});
 When('i read the file', function () {});
 Then('it contains', function (docString) {
-  assert.equal(docString, fox.readLocalFile('.gitignore'));
+  assert.equal(docString, fox.readFile('.gitignore'));
 });
 
 Given('a directory, in the local filesystem, at path: {string}', function (string) {});
 When('the appropriate function is called', function () {});
 Then('it returns a {string}', function (string) {
-  assert.equal(string, fox.checkLocallyIfDirectoryOrFile('features'));
+  assert.equal(string, fox.checkIfDirectoryOrFile('features'));
 });
 
 Given('a file, in the local filesystem', function () {});
 When('created at path: {string}', function (string) {});
 Then('it contains: {string}', function (string) {
-  assert.equal(string, fox.createLocalFile('testfile.txt'));
+  assert.equal(string, fox.createFile('testfile.txt'));
 });
 
 Given('a file is the local filesystem', function () {});
 When('edited at path: {string}', function (string) {});
 Then('the contents are: {string}', function (string) {
-  assert.equal(string, fox.updateLocalFile('testfile.txt', 'hello world'));
+  assert.equal(string, fox.updateFile('testfile.txt', 'hello world'));
 });
 
 Given('a file is deleted', function () {});
 let deletedFileMessage = ''
 When('i call the apropriate function', function () {
-  deletedFileMessage = fox.deleteLocalFile('testfile.txt');
+  deletedFileMessage = fox.deleteFile('testfile.txt');
   return deletedFileMessage;
 });
 Then('i get the answer {string}', function (string) {
@@ -45,7 +45,7 @@ Given('a directory created at path {string}', function (string) {
 });
 let mkdir;
 When('i call it the function', function () {
-  mkdir = fox.createLocalDirectory(myPath);
+  mkdir = fox.createDirectory(myPath);
 });
 
 Then('i it says answer {string}', function (string) {
@@ -60,7 +60,7 @@ Given('a directory deleted at path {string}', function (string) {
 });
 let rmdir;
 When('deleteLocalDirectory is called', function () {
-  rmdir = fox.deleteLocalDirectory(dirPath);
+  rmdir = fox.deleteDirectory(dirPath);
   return rmdir;
 });
 
@@ -76,7 +76,7 @@ Then('it returns {string}', function (string) {
 // });
 // let readDir;
 // When('readLocalDirectory is called', function () {
-//   readDir = fox.listLocalDirectory(readPath)
+//   readDir = fox.listDirectory(readPath)
 //   return readDir;
 // });
 
@@ -93,7 +93,7 @@ Given('I want to move a local file {string}', function (string) {
 });
 let movedFile;
 When('moveLocalFIle is called', function () {
-   movedFile = fox.moveLocalFile(copyFile, newLocation);
+   movedFile = fox.moveFile(copyFile, newLocation);
   return movedFile;
 });
 
@@ -108,7 +108,7 @@ Given('I have a directory i want to move called {string}', function (string) {
 });
 let itMoved;
 When('i cann moveLocalDirectory', function () {
-  itMoved = fox.moveLocalDirectory(movingDirectory, 'features/jibjab');
+  itMoved = fox.moveDirectory(movingDirectory, 'features/jibjab');
   return itMoved;
 });
 
@@ -121,8 +121,8 @@ Given('I need to copy {string} back to the root directory', function (string) {
   return localFile;
 });
 let copyedFile
-When('i call copyLocalFile', function () {
-  copyedFile = fox.copyLocalFile('./features/manual.js', './manual.js')
+When('i call copyFile', function () {
+  copyedFile = fox.copyFile('./features/manual.js', './manual.js')
   return copyedFile;
 });
 
@@ -137,7 +137,7 @@ Given('a directory, in the local filesystem, at path:{string}', function (string
 
 let copyedDir;
 When('i call the function copyLocalDirectory to {string}', function (string) {
-  copyedDir = fox.copyLocalDirectory(localDir, string)
+  copyedDir = fox.copyDirectory(localDir, string)
   return copyedDir;
 });
 
@@ -150,8 +150,8 @@ Then('it will copy it to {string}', function (string) {
 //   return foxie;
 // });
 // let stats;
-// When('i call getLocalItemStats on it', function () {
-//   stats = fox.getLocalItemStats(foxie);
+// When('i call getItemStats on it', function () {
+//   stats = fox.getItemStats(foxie);
 //   return stats;
 // });
 

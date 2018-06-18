@@ -1,14 +1,19 @@
 const fs = require('fs-extra');
+const memfs = require('memfs');
 
 module.exports = {
 
-  createLocalFile(file_name) {
+  createFile(file_name) {
     let tempData = 'hello world'
-    fs.writeFileSync(`./${file_name}`, tempData);
-    return tempData;
+    try {
+      fs.writeFileSync(`./${file_name}`, tempData);
+      return tempData;
+    } catch(e) {
+      return e;
+    }
   },
 
-  readLocalFile(path) {
+  readFile(path) {
     try {
       let content = fs.readFileSync(path, 'utf-8');
       return content;
@@ -17,12 +22,12 @@ module.exports = {
     }
   },
 
-  updateLocalFile(file_name, content) {
+  updateFile(file_name, content) {
     fs.writeFileSync(`./${file_name}`, content);
     return content;
   },
   
-  deleteLocalFile(file_name) {
+  deleteFile(file_name) {
     try {
       fs.unlinkSync(`./${file_name}`);
       return 'File deleted';
@@ -31,7 +36,7 @@ module.exports = {
     }
   },
   
-  createLocalDirectory(directory_name) {
+  createDirectory(directory_name) {
       try {
         fs.mkdirSync(`./${directory_name}`);
         return 'Directory created'
@@ -40,7 +45,7 @@ module.exports = {
       }
   },
     
-  listLocalDirectory(directory_name) {
+  listDirectory(directory_name) {
       try {
         return fs.readdirSync(`./${directory_name}`);
       } catch(e) {
@@ -48,7 +53,7 @@ module.exports = {
       }
   },
 
-  deleteLocalDirectory(directory_name) {
+  deleteDirectory(directory_name) {
     try{
       fs.rmdirSync(`./${directory_name}`);
       return 'Directory removed'
@@ -57,7 +62,7 @@ module.exports = {
     }
   },
 
-  checkLocallyIfDirectoryOrFile(path) {  
+  checkIfDirectoryOrFile(path) {  
     try {
       let value;
       if(fs.statSync(path).isDirectory()) {
@@ -70,7 +75,7 @@ module.exports = {
     }
   },
 
-  moveLocalFile(file_name, new_path_full) {
+  moveFile(file_name, new_path_full) {
     try{
       fs.copyFileSync(file_name, new_path_full);
       fs.unlinkSync(file_name);
@@ -80,7 +85,7 @@ module.exports = {
     }
   },
 
-  moveLocalDirectory(directory_name, new_path_full) {
+  moveDirectory(directory_name, new_path_full) {
     try {
       fs.moveSync(directory_name, new_path_full);
       return `${directory_name} moved to ./${new_path_full}`
@@ -89,7 +94,7 @@ module.exports = {
     }
   },
 
-  copyLocalFile(file_name, new_path_full) {
+  copyFile(file_name, new_path_full) {
     try {
       fs.createReadStream(file_name).pipe(fs.createWriteStream(new_path_full));
       return `${file_name} copyed to ${new_path_full}`;
@@ -98,7 +103,7 @@ module.exports = {
     }
   },
 
-  copyLocalDirectory(directory_name, new_path_full) {
+  copyDirectory(directory_name, new_path_full) {
     try {
       fs.copy(directory_name, new_path_full);
       return `${directory_name} has been copyed to ${new_path_full}`;
@@ -107,7 +112,7 @@ module.exports = {
     }
   },
   
-  getLocalItemStats(file_name) {
+  getItemStats(file_name) {
     try {
       return fs.statSync(file_name);
     } catch(e) {
