@@ -109,7 +109,7 @@ module.exports = {
   
   getLocalItemStats(file_name) {
     try {
-      return fs.stat(file_name);
+      return fs.statSync(file_name);
     } catch(e) {
       return e;
     }

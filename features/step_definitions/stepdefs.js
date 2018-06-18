@@ -115,3 +115,46 @@ When('i cann moveLocalDirectory', function () {
 Then('it moves the directory to {string}', function (string) {
   assert.equal(string, itMoved);
 });
+let localFile;
+Given('I need to copy {string} back to the root directory', function (string) {
+  localFile = string
+  return localFile;
+});
+let copyedFile
+When('i call copyLocalFile', function () {
+  copyedFile = fox.copyLocalFile('./features/manual.js', './manual.js')
+  return copyedFile;
+});
+
+Then('the files new path will be {string}', function (string) {
+  assert.equal(string, copyedFile);
+});
+let localDir;
+Given('a directory, in the local filesystem, at path:{string}', function (string) {
+  localDir = string;
+  return localDir;
+});
+
+let copyedDir;
+When('i call the function copyLocalDirectory to {string}', function (string) {
+  copyedDir = fox.copyLocalDirectory(localDir, string)
+  return copyedDir;
+});
+
+Then('it will copy it to {string}', function (string) {
+  assert.equal(string, copyedDir);
+});
+// let foxie;
+// Given('the file {string}', function (string) {
+//   foxie = string;
+//   return foxie;
+// });
+// let stats;
+// When('i call getLocalItemStats on it', function () {
+//   stats = fox.getLocalItemStats(foxie);
+//   return stats;
+// });
+
+// Then('i get the object {string}', function (string) {
+//   assert.equal(string, stats);
+// });

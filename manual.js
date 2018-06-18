@@ -1,3 +1,3 @@
 const fox = require('./fox');
 
-console.log(fox.moveLocalDirectory('jibjab', 'features/jibjab'));
+console.log(fox.getLocalItemStats('./fox.js'));
