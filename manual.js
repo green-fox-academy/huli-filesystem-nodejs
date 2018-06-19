@@ -1,3 +1,3 @@
 const fox = require('./fox');
 
-console.log(fox.getLocalItemStats('./fox.js'));
+console.log(fox.createFile('csirke.txt', false));

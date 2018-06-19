@@ -54,17 +54,17 @@ Feature: BDD filesystem package wrking as expected
 
   Scenario:
     Given I have a directory i want to move called 'jibjab'
-    When i cann moveLocalDirectory
+    When i cann moveDirectory
     Then it moves the directory to 'jibjab moved to ./features/jibjab'
 
   Scenario:
     Given I need to copy 'manual.js' back to the root directory
-    When i call copyLocalFile
+    When i call copyFile
     Then the files new path will be './features/manual.js copyed to ./manual.js'
 
   Scenario: copy directory
     Given a directory, in the local filesystem, at path:'./features/jibjab'
-    When i call the function copyLocalDirectory to './jibjab'
+    When i call the function copyDirectory to './jibjab'
     Then it will copy it to './features/jibjab has been copyed to ./jibjab'
 
   # Scenario:
