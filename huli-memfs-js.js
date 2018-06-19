@@ -1,6 +1,6 @@
 'use strict';
-const memfs = require('memfs');
+const fs = require('memfs');
 const fdef = require('./functionDefnitions');
-const huliMemFs = fdef(memfs);
+const huliMemFs = fdef(fs);
 
 module.exports = huliMemFs;

@@ -1,3 +1,3 @@
-const fox = require('./fox');
+const fox = require('./huli-memfs-js');
 
-console.log(fox.createFile('csirke.txt', false));
+console.log(fox.createFile('csirke.txt'));
