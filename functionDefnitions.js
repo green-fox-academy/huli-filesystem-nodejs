@@ -15,7 +15,8 @@ module.exports = function functionDefinitions(module) {
 
     readFile(path) {
       try {
-        let content = module.readFileSync(path, 'utf-8');
+        let content = module.readFileSync(`./${path}`, 'utf-8');
+        return content;
       } catch(e) {
         return e;
       }
@@ -50,7 +51,7 @@ module.exports = function functionDefinitions(module) {
 
     listDirectory(directoryName) {
       try {
-        return module.readdirSync(`./${directoryName}`);
+        return module.readdirSync(`./${directoryName}`).join().replace(/,/gi, ', ');
       } catch(e) {
         return e;
       }
@@ -58,7 +59,7 @@ module.exports = function functionDefinitions(module) {
 
     deleteDirectory(directoryName) {
       try {
-        module.rmdirSync(`./${directoryName}`);
+        module.removeSync(`./${directoryName}`);
         return `${directoryName} removed.`;
       } catch(e) {
         return e;
@@ -67,9 +68,9 @@ module.exports = function functionDefinitions(module) {
 
     checkIfDirectoryOrFile(path) {
       try {
-        if(module.statSynch(path).isDirectory()) {
+        if(module.statSync(path).isDirectory()) {
           return `${path} is a directory`;
-        } else if(module.statSynch(path).isFile()) {
+        } else if(module.statSync(path).isFile()) {
           return `${path} is a file.`
         } else {
           return 'No such file or directory.';
@@ -82,7 +83,7 @@ module.exports = function functionDefinitions(module) {
     moveFile(fileName, destination) {
       try {
         module.moveSync(`./${fileName}`, `./${destination}`);
-        return `${fileName} moved to ${destination}`;
+        return `${fileName} moved to ./${destination}`;
       } catch(e) {
         return e;
       }
@@ -91,7 +92,7 @@ module.exports = function functionDefinitions(module) {
     moveDirectory(directoryName, destination) {
       try {
         module.moveSync(`./${directoryName}`, `./${destination}`);
-        return `${directoryName} moved to ${destination}`;
+        return `${directoryName} moved to ./${destination}`;
       } catch(e) {
         return e;
       }
@@ -100,7 +101,7 @@ module.exports = function functionDefinitions(module) {
     copyFile(fileName, destination) {
       try {
         module.copyFileSync(fileName, destination);
-        return `${fileName} has been copyed to ${destination}`;
+        return `${fileName} has been copyed to ./${destination}`;
       } catch(e) {
         return e;
       }
@@ -117,7 +118,7 @@ module.exports = function functionDefinitions(module) {
 
     getItemStats(fileName) {
       try {
-        return module.statSynch(fileName);
+        return module.statSync(`./${fileName}`);
       } catch(e) {
         return e;
       }

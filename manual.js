@@ -1,3 +1,4 @@
-const fox = require('./huli-memfs-js');
+const fox = require('./huli-fs-js');
 
-console.log(fox.createFile('csirke.txt'));
+
+console.log(fox.getItemStats('cucumber.js'));
