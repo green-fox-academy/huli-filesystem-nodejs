@@ -3,7 +3,7 @@
 
 module.exports = function functionDefinitions(module) {
   return {
-    createFile(fileName) {
+    createFileSync(fileName) {
       let tempData = 'hello wolrd!';
       try {
         module.writeFileSync(`./${fileName}`, tempData);
@@ -13,7 +13,7 @@ module.exports = function functionDefinitions(module) {
       }
     },
 
-    readFile(path) {
+    readFileSync(path) {
       try {
         let content = module.readFileSync(`./${path}`, 'utf-8');
         return content;
@@ -22,7 +22,7 @@ module.exports = function functionDefinitions(module) {
       }
     },
 
-    updateFile(fileName, content) {
+    updateFileSync(fileName, content) {
       try {
         module.writeFileSync(`./${fileName}`, content);
         return `${fileName} updated with ${content}`
@@ -31,7 +31,7 @@ module.exports = function functionDefinitions(module) {
       }
     },
 
-    deleteFile(fileName) {
+    deleteFileSync(fileName) {
       try {
         module.unlinkSync(`./${fileName}`);
         return `${fileName} deleted.`
@@ -40,7 +40,7 @@ module.exports = function functionDefinitions(module) {
       }
     },
 
-    createDirectory(directoryName) {
+    createDirectorySync(directoryName) {
       try {
         module.mkdirSync(`./${directoryName}`);
         return `${directoryName} created`;
@@ -49,7 +49,7 @@ module.exports = function functionDefinitions(module) {
       }
     },
 
-    listDirectory(directoryName) {
+    listDirectorySync(directoryName) {
       try {
         return module.readdirSync(`./${directoryName}`).join().replace(/,/gi, ', ');
       } catch(e) {
@@ -57,16 +57,27 @@ module.exports = function functionDefinitions(module) {
       }
     },
 
-    deleteDirectory(directoryName) {
+    deleteDirectorySync(directoryName) {
       try {
-        module.removeSync(`./${directoryName}`);
+        if( module.existsSync(directoryName) ) {
+          module.readdirSync(directoryName).forEach(function(file,index){
+          var curPath = directoryName + "/" + file;
+          if(module.lstatSync(curPath).isDirectory()) { // recurse
+            deleteFolderRecursive(curPath);
+          } else { // delete file
+          module.unlinkSync(curPath);
+          }
+          });
+          module.rmdirSync(directoryName);
+        }
         return `${directoryName} removed.`;
-      } catch(e) {
+      }
+      catch(e) {
         return e;
       }
     },
 
-    checkIfDirectoryOrFile(path) {
+    checkIfDirectoryOrFileSync(path) {
       try {
         if(module.statSync(path).isDirectory()) {
           return `${path} is a directory`;
@@ -80,7 +91,7 @@ module.exports = function functionDefinitions(module) {
       }
     },
 
-    moveFile(fileName, destination) {
+    moveFileSync(fileName, destination) {
       try {
         module.moveSync(`./${fileName}`, `./${destination}`);
         return `${fileName} moved to ./${destination}`;
@@ -89,7 +100,7 @@ module.exports = function functionDefinitions(module) {
       }
     },
 
-    moveDirectory(directoryName, destination) {
+    moveDirectorySync(directoryName, destination) {
       try {
         module.moveSync(`./${directoryName}`, `./${destination}`);
         return `${directoryName} moved to ./${destination}`;
@@ -98,7 +109,7 @@ module.exports = function functionDefinitions(module) {
       }
     },
 
-    copyFile(fileName, destination) {
+    copyFileSync(fileName, destination) {
       try {
         module.copyFileSync(fileName, destination);
         return `${fileName} has been copyed to ./${destination}`;
@@ -107,7 +118,7 @@ module.exports = function functionDefinitions(module) {
       }
     },
 
-    copyDirectory(directoryName, destination) {
+    copyDirectorySync(directoryName, destination) {
       try {
         module.copy(directoryName, destination);
         return `${directoryName} has been copyed to ${destination}`;
@@ -116,7 +127,7 @@ module.exports = function functionDefinitions(module) {
       }
     },
 
-    getItemStats(fileName) {
+    getItemStatsSync(fileName) {
       try {
         return module.statSync(`./${fileName}`);
       } catch(e) {
@@ -125,4 +136,3 @@ module.exports = function functionDefinitions(module) {
     }
   }
 };
-

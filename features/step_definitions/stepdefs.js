@@ -10,7 +10,7 @@ Given('a file, in the local filesystem, at path: {string}', function (string) {
 });
 
 When('i call the readFile function', function () {
-  whenState = fox.readFile(givenState);
+  whenState = fox.readFileSync(givenState);
   return whenState;
 });
 
@@ -25,7 +25,7 @@ Given('a directory, in the local filesystem, at path: {string}', function (strin
 });
 
 When('checkIfDirectoryOrFile is called', function () {
-  whenState = fox.checkIfDirectoryOrFile(givenState)
+  whenState = fox.checkIfDirectoryOrFileSync(givenState)
   return whenState;
 });
 
@@ -40,7 +40,7 @@ Given('there shall be a file called {string}', function (string) {
 });
 
 When('createFile is called', function () {
-  whenState = fox.createFile('test')
+  whenState = fox.createFileSync('test')
   return whenState;
 });
 
@@ -55,7 +55,7 @@ Given('a file in the local filesystem {string}', function (string) {
 });
 
 When('updateFile is called', function () {
-  whenState = fox.updateFile(givenState, 'hello update')
+  whenState = fox.updateFileSync(givenState, 'hello update')
   return whenState;
 });
 
@@ -70,7 +70,7 @@ Given('I want to move a local file {string}', function (string) {
 });
 
 When('moveFIle is called', function () {
-  whenState = fox.moveFile(givenState, givenState);
+  whenState = fox.moveFileSync(givenState, givenState);
   return whenState;
 });
 
@@ -85,7 +85,7 @@ Given('I need to copy {string} to the root directory', function (string) {
 });
 
 When('i call copyFile', function () {
-  whenState = fox.copyFile(givenState, 'stepdefs.js');
+  whenState = fox.copyFileSync(givenState, 'stepdefs.js');
   return whenState;
 });
 
@@ -100,8 +100,8 @@ Given('i want to delete {string}', function (string) {
 });
 
 When('i call deleteFile', function () {
-  whenState = fox.deleteFile(givenState);
-  fox.deleteFile('./stepdefs.js')
+  whenState = fox.deleteFileSync(givenState);
+  fox.deleteFileSync('./stepdefs.js')
   return whenState;
 });
 
@@ -116,7 +116,7 @@ Given('a directory created as {string}', function (string) {
 });
 
 When('i call createDirectory', function () {
-  whenState = fox.createDirectory(givenState);
+  whenState = fox.createDirectorySync(givenState);
   return whenState;
 });
 
@@ -131,7 +131,7 @@ Given('I have a directory i want to move called {string}', function (string) {
 });
 
 When('i call moveDirectory', function () {
-  whenState = fox.moveDirectory(givenState, givenState);
+  whenState = fox.moveDirectorySync(givenState, givenState);
   return whenState;
 });
 
@@ -145,7 +145,7 @@ Given('a directory, in the local filesystem, at path:{string}', function (string
 });
 
 When('i call the function copyDirectory to {string}', function (string) {
-  whenState = fox.copyDirectory(givenState, string);
+  whenState = fox.copyDirectorySync(givenState, string);
   return whenState;
 });
 
@@ -160,7 +160,7 @@ Given('a directory i want to delete called {string}', function (string) {
 });
 
 When('deleteDirectory is called', function () {
-  whenState = fox.deleteDirectory(givenState);
+  whenState = fox.deleteDirectorySync(givenState);
   return whenState;
 });
 
@@ -175,7 +175,7 @@ Given('a local directory called {string}', function (string) {
 });
 
 When('listDirectory is called', function () {
-  whenState = fox.listDirectory(givenState);
+  whenState = fox.listDirectorySync(givenState);
   return whenState;
 });
 
@@ -190,7 +190,7 @@ Given('the file {string}', function (string) {
 });
 
 When('i call getItemStats on it', function () {
-  whenState = fox.getItemStats(givenState);
+  whenState = fox.getItemStatsSync(givenState);
   return whenState;
 });
 

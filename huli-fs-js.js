@@ -4,4 +4,3 @@ const fdef = require('./functionDefnitions');
 const huliFs = fdef(fs);
 
 module.exports = huliFs;
-

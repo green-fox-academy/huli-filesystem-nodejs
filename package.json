@@ -1,6 +1,6 @@
 {
   "name": "huli-fs-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a filesystem package for huli developers",
   "main": "fox.js",
   "scripts": {
